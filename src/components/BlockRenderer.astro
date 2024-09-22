@@ -1,0 +1,34 @@
+---
+import BlockRenderereInner from './BlockRenderer.astro'
+import { getBlockStyling, type Block } from '@wp-block-tools/styles'
+
+interface Props {
+  blocks: Block[]
+}
+const { blocks } = Astro.props
+
+---
+
+{
+  blocks.map((block) => {
+  const { styles, classes } = getBlockStyling(block);
+    switch(block.name) {
+      case "core/paragraph":
+      
+        return <p class={classes} style={styles}
+        set:html={block.attributes?.content}>
+        </p>
+      case "core/quote":
+      case "core/columns":
+      case 'core/column':
+      case "core/post-content":
+      return <div class={classes} style={styles}>
+      <BlockRenderereInner blocks={block.innerBlocks || []} />
+      </div>
+    default:
+    return null
+    
+  }
+  })
+}
+
