@@ -27,14 +27,21 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {data} = await response.json();
 const blocks = (data.nodeByUri?.blocks || []) as Block[];
 const seo = (data.nodeByUri?.seo || []);
+const rutas = Astro.url.host
 ---
 
 <html lang="en">
 	<CommonHead title={seo.title || ''}  description={seo.metaDesc || ''}/>
 	<body>
 		
+		
 		<BlockRenderer blocks= {blocks} />
 		
-		
+		<div class="bg-pink-800 text-white p-4">
+			<pre>
+				{JSON.stringify(rutas, null, 2)}
+			</pre>
+
+		</div>
 	</body>
 </html>
