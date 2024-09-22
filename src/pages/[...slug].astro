@@ -27,7 +27,8 @@ export async function getStaticPaths() {
   const { data } = await response.json();
   //console.log(data.pages.nodes[0].seo);
   return data.pages.nodes.map((page: any) => ({
-    params: { slug: page.uri === "/" ? undefined : page.uri },
+    /* params: { slug: page.uri === "/" ? undefined : page.uri }, */
+		params: { slug: page.uri },
   }));
   //return [];
 }
@@ -52,7 +53,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   }
 }`,
     variables: {
-      uri: Astro.params.slug || "/",
+      /* uri: Astro.params.slug || "/", */
+      uri: Astro.params["slug"] || "/",
     },
   }),
 });
