@@ -11,7 +11,7 @@ interface Props {
   url: string
 }
 const {classes, styles, label, url} = Astro.props;
-const href= "//"+replaceUrls(url, Astro.url.host);
+const href= replaceUrls(url, Astro.url.host);
 
 
 ---

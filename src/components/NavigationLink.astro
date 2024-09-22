@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {styles, classes, label, url} = Astro.props
-const href= "//"+replaceUrls(url, Astro.url.host);
+const href= replaceUrls(url, Astro.url.host);
 ---
 <li style={styles} class={joinClasses(classes)}>
   <a href={href} >{label}</a>
