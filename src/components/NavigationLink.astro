@@ -1,0 +1,19 @@
+---
+import { joinClasses } from '../utils/joinClasses';
+import { replaceUrls } from '../utils/replaceUrls';
+
+interface Props {
+  styles: string,
+  classes: string;
+  label: string;
+  url: string;
+}
+
+const {styles, classes, label, url} = Astro.props
+const href= "//"+replaceUrls(url, Astro.url.host);
+---
+<li style={styles} class={joinClasses(classes)}>
+  <a href={href} >{label}</a>
+
+</li>
+
